@@ -1,3 +1,4 @@
 # Heading
 This is some contnt.
-New contnt
+New contnt.
+Great contnt.
