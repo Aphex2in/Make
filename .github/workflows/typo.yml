@@ -25,6 +25,5 @@ jobs:
 
     - name: Lint Markdown Files
       run: |
-        find . -name "*.md" | xargs npx proselint
-        find . -name "*.md" | xargs npx write-good
-
+        find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx proselint
+        find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx write-good
