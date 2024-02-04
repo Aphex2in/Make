@@ -1,13 +1,27 @@
-on: [push]
+name: Markdown Linter
 
-name: 'Trigger: Push action'
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
 
 jobs:
-  shellcheck:
-    name: Shellcheck
+  lint:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
 
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install proselint write-good
+
+    - name: Lint Markdown Files
+      run: |
+        find . -name "*.md" | xargs npx proselint
+        find . -name "*.md" | xargs npx write-good
