@@ -27,4 +27,3 @@ jobs:
       run: |
         find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx proselint
         find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx write-good
-
