@@ -1,0 +1,30 @@
+name: Markdown Linter
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: |
+        npm install proselint write-good
+        pip install proselint
+
+    - name: Lint Markdown Files
+      run: |
+        find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx proselint
+        find "${GITHUB_WORKSPACE}" -name "*.md" | xargs npx write-good
+
