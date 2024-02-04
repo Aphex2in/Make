@@ -19,9 +19,12 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
-      run: npm install proselint write-good
+      run: |
+        npm install proselint write-good
+        pip install proselint
 
     - name: Lint Markdown Files
       run: |
         find . -name "*.md" | xargs npx proselint
         find . -name "*.md" | xargs npx write-good
+
